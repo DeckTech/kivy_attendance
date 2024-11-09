@@ -1,0 +1,50 @@
+WindowManager:
+    MainScreen:
+    SecondScreen:
+    ProfileScreen:
+
+
+<MainScreen>:
+    name: "main"
+    MDScreen:
+        MDLabel:
+            halign: 'center'
+            text: 'My Text'
+
+        MDRaisedButton:
+            text: 'Continue'
+            halign: 'right'
+
+            on_release:
+                app.root.current = 'second'
+                root.manager.transition.direction = "left"
+
+
+<SecondScreen>:
+    name: "second"
+    MDScreen:
+        MDFloatLayout:
+            spacing: '10dp'
+            padding: '20dp'
+
+        MDRaisedButton:
+            text: 'Go Back'
+            halign: 'left'
+            pos_hint: {'x': 0.1, 'y':0 }
+
+
+            on_release:
+                app.root.current = "main"
+                root.manager.transition.direction = "right"
+        MDRaisedButton:
+            text: 'Next'
+            halign: 'right'
+            pos_hint: {'x': 0.5, 'y':0 }
+
+            on_release:
+                app.root.current = "profile"
+                root.manager.transition.direction = "left"
+
+
+<ProfileScreen>:
+    name:"profile"
