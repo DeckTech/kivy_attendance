@@ -36,8 +36,15 @@ def get_home_folder():
 #Handling data from csv file
 class File_Handler:
     def __init__(self):
-        os.chdir(get_home_folder)
+        os.chdir(get_home_folder())
         self.file_name = "student_data.csv"
+
+    def check_file(self):
+         if os.path.isfile(self.file_name):
+             return True
+         else:
+             return False
+
     def read_file(self):
         if os.path.isfile(self.file_name):
             with open(self.file_name,"r") as data:
@@ -45,12 +52,10 @@ class File_Handler:
                 row = next(reader,None)
                 return row
         else:
-            with open(self.file_name,"r") as test:
                 pass
 
     def write_file(self,content):
-        if os.path.isfile(self.file_name):
-            with open(self.file_name,"w") as data:
-                writer = csv.DictWriter(data,content.keys())
-                writer.writeheader()
-                writer.writerow(content)
+        with open(self.file_name,"w") as data:
+            writer = csv.DictWriter(data,content.keys())
+            writer.writeheader()
+            writer.writerow(content)
