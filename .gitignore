@@ -1,1 +1,3 @@
 kivy_env/
+client/__pycache__
+admin/__pycache__
