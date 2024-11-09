@@ -10,40 +10,95 @@ WindowManager:
         MDLabel:
             halign: 'center'
             text: 'My Text'
+        MDFloatLayout:
 
-        MDRaisedButton:
-            text: 'Continue'
-            halign: 'right'
 
-            on_release:
-                app.root.current = 'second'
-                root.manager.transition.direction = "left"
+            MDRaisedButton:
+                text: 'Continue'
+                size_hint: (1,None)
+                pos_hint: {'x': 0, 'y': 0.02}
+                height: "100dp"
+
+                on_release:
+                    app.root.current = 'second'
+                    root.manager.transition.direction = "left"
 
 
 <SecondScreen>:
     name: "second"
+    first_name:first_name
+    last_name:last_name
+    reg_no:reg_no
+    department:department
+    user_password:user_password
     MDScreen:
+        MDScrollView:
+            MDGridLayout:
+                rows: 10
+                cols: 1
+                row_default_height: "20dp"
+                row_force_default: True
+                spacing: 20
+                padding: [10,10]
+
+                MDLabel:
+                    text: 'First Name'
+                MDTextField:
+                    id: first_name
+                    mode: 'line'
+                    multiline: False
+
+                MDLabel:
+                    text: 'Last Name'
+                MDTextField:
+                    id: last_name
+                    multiline: False
+                    mode: 'line'
+
+                MDLabel:
+                    text: 'Regstration Number'
+                MDTextField:
+                    id:reg_no
+                    mode: 'line'
+                    multiline: False
+
+                MDLabel:
+                    text: 'Department'
+                MDTextField:
+                    id:department
+                    mode: 'line'
+                    multiline: False
+
+                MDLabel:
+                    text: 'Password'
+                MDTextField:
+                    id:user_password
+                    mode: 'line'
+                    multiline: False
+                    password: True
+                    password_mask:'*'
+
+
         MDFloatLayout:
-            spacing: '10dp'
-            padding: '20dp'
+            MDFillRoundFlatButton:
 
-        MDRaisedButton:
-            text: 'Go Back'
-            halign: 'left'
-            pos_hint: {'x': 0.1, 'y':0 }
+                text: 'Go Back'
+                size_hint: (0.45,None)
+                height: "50dp"
+                pos_hint: {'x':0.025 , 'y':0.025 }
+                on_release:
+                    app.root.current = "main"
+                    root.manager.transition.direction = "right"
 
+            MDFillRoundFlatButton:
 
-            on_release:
-                app.root.current = "main"
-                root.manager.transition.direction = "right"
-        MDRaisedButton:
-            text: 'Next'
-            halign: 'right'
-            pos_hint: {'x': 0.5, 'y':0 }
-
-            on_release:
-                app.root.current = "profile"
-                root.manager.transition.direction = "left"
+                text: 'Next'
+                size_hint: (0.45,None)
+                height: "50dp"
+                pos_hint: {'x':0.525 , 'y':0.025 }
+                on_release:
+                    app.root.current = "profile"
+                    root.manager.transition.direction = "left"
 
 
 <ProfileScreen>:

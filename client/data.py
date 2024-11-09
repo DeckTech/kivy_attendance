@@ -4,11 +4,12 @@ import csv
 #Creating My own data object called person
 
 class Person:
-    def __init__(self,first_name,last_name,reg_no,department):
+    def __init__(self,first_name,last_name,reg_no,department,password):
         self.first_name = first_name
         self.last_name = last_name
         self.reg_no  = reg_no
         self.department = department
+        self.password = password
 
     def __repr__(self):
         print(f"First name:{ self.first_name } \n Last name: { self.last_name } \n Reg_No:{ self.reg_no } \n Department: { self.department }")
@@ -19,7 +20,8 @@ class Person:
             'first_name':self.first_name,
             'last_name': self.last_name,
             'reg_no':self.reg_no,
-            'department': self.department
+            'department': self.department,
+            'password':self.password
         }
 
 
