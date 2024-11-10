@@ -1,5 +1,6 @@
 from kivy.uix.accordion import ObjectProperty
 from kivymd.uix.screenmanager import MDScreenManager
+from kivymd.uix.dialog import MDDialog
 from kivymd.uix.screen import MDScreen
 from kivymd.app import MDApp
 from kivy.lang import Builder
@@ -14,7 +15,15 @@ class WindowManager(MDScreenManager):
     pass
 
 class MainScreen(MDScreen):
-    pass
+    def check_file_exists(self):
+
+        if File_Handler().check_file():
+            self.manager.current = "profile"
+
+        else:
+            self.manager.current = "second"
+
+        self.manager.transition.direction = 'left'
 
 class SecondScreen(MDScreen):
     first_name = ObjectProperty(None)
@@ -36,8 +45,9 @@ class SecondScreen(MDScreen):
         }
 
         if data.check_file():
-            print("File Present")
-            pass
+            self.manager.current = "profile"
+            self.manager.transition.direction = 'left'
+
         else:
             Passable = True
             for key,value in check_answers.items():
@@ -52,7 +62,17 @@ class SecondScreen(MDScreen):
                 self.manager.current = "profile"
                 self.manager.transition.direction = 'left'
             else:
-                pass
+                self.dialog = MDDialog(
+                title="Failed",
+                text="Please Enter Data into all the fields correctly",
+                size_hint=(0.6, 0.6),
+                pos_hint={'center_x': 0.5, 'center_y': 0.5},
+                auto_dismiss=True,
+                background_color= (0,0,0,0.5),
+                padding= 20
+                )
+                self.dialog.open()  # Open the dialog
+
 
 
 

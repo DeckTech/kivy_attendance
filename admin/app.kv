@@ -1,0 +1,31 @@
+WindowManager
+    MainScreen:
+    SecondScreen:
+    ServerScreen:
+
+<ServerScreen>:
+    name: "main"
+    MDScreen:
+        MDLabel:
+            halign: 'center'
+            text: 'DeckTech'
+        MDFloatLayout:
+
+
+            MDRaisedButton:
+                text: 'Start Server'
+                size_hint: (1,None)
+                pos_hint: {'x': 0, 'y': 0.2}
+                height: "100dp"
+                on_release:
+                    root.start()
+            MDRaisedButton:
+                text: 'Close Server'
+                size_hint: (1,None)
+                pos_hint: {'x': 0, 'y': 0.1}
+                height: "100dp"
+                on_release:
+                    root.close()
+
+
+<SecondScreen>:

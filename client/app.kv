@@ -9,7 +9,7 @@ WindowManager:
     MDScreen:
         MDLabel:
             halign: 'center'
-            text: 'My Text'
+            text: 'DeckTech'
         MDFloatLayout:
 
 
@@ -19,8 +19,7 @@ WindowManager:
                 pos_hint: {'x': 0, 'y': 0.02}
                 height: "100dp"
                 on_release:
-                    app.root.current = 'second'
-                    root.manager.transition.direction = "up"
+                    root.check_file_exists()
 
 
 
