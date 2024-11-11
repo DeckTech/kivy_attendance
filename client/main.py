@@ -2,13 +2,13 @@ from kivy.uix.accordion import ObjectProperty
 from kivymd.uix.screenmanager import MDScreenManager
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.screen import MDScreen
+from kivymd.uix.card import MDCard
 from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.core.window import Window
 from data import Person
 from data import File_Handler
 import network
-import time
 
 
 Window.size=(360,640)
@@ -86,11 +86,20 @@ class SecondScreen(MDScreen):
 class ProfileScreen(MDScreen):
     pass
 
+class ServerCard(MDCard):
+    pass
 class ServerList(MDScreen):
     def load_servers(self):
         network.listen_to_all_servers(network.PORT)
-        time.sleep(10)
-        print(network.servers_found)
+        server_list = list(set(network.servers_found))
+
+            # Clear existing cards
+        self.ids.card_container.clear_widgets()
+
+        # Loop through data and create a card for each server
+        for server in server_list:
+            card = ServerCard()
+            self.ids.card_container.add_widget(card)
 
 
 

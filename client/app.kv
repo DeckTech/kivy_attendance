@@ -5,6 +5,7 @@ WindowManager:
     ProfileScreen:
 
 
+
 <MainScreen>:
     name: "main"
     MDScreen:
@@ -116,16 +117,31 @@ WindowManager:
         root.load_servers()
 
     MDScrollView:
+        MDBoxLayout:
+            id: card_container  # ID to access from Python
+            orientation: 'vertical'
+            adaptive_height: True
+            padding: [10, 10]
+            spacing: 10
 
-        MDFloatLayout:
-            MDIconButton:
-                icon: 'arrow-left'
-                pos_hint: {'center_x':0.05 , 'center_y':0.95 }
-                padding: 20
-                on_release:
-                    app.root.current ="profile"
-                    root.manager.transition.direction = "right"
-            MDIconButton:
-                icon: 'refresh'
-                padding: 30
-                pos_hint: {'center_x':0.91 , 'center_y':0.95 }
+
+    MDFloatLayout:
+        MDIconButton:
+            icon: 'arrow-left'
+            pos_hint: {'center_x':0.05 , 'center_y':0.95 }
+            padding: 20
+            on_release:
+                app.root.current ="profile"
+                root.manager.transition.direction = "right"
+        MDIconButton:
+            icon: 'refresh'
+            padding: 30
+            pos_hint: {'center_x':0.91 , 'center_y':0.95 }
+
+<ServerCard>:
+    MDRaisedButton:
+        text: "Connect"
+        size_hint: None, None
+        size: "200dp", "40dp"
+        pos_hint: {"center_x": 0.5,'center_y':0.5}
+        on_release: root.connect_to_server()

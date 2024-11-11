@@ -41,6 +41,7 @@ def listen_to_all_servers(port):
                 finally:
                     break
         print("Stopped listening for broadcasts.")
+        
 
     # Start the listener in a separate thread
     listener_thread = threading.Thread(target=listen)
