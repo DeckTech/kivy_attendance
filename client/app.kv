@@ -1,6 +1,7 @@
 WindowManager:
     MainScreen:
     SecondScreen:
+    ServerList:
     ProfileScreen:
 
 
@@ -11,8 +12,6 @@ WindowManager:
             halign: 'center'
             text: 'DeckTech'
         MDFloatLayout:
-
-
             MDRaisedButton:
                 text: 'Continue'
                 size_hint: (1,None)
@@ -101,3 +100,32 @@ WindowManager:
 
 <ProfileScreen>:
     name:"profile"
+    MDFloatLayout:
+        MDIconButton:
+            text: 'ben'
+            icon: 'magnify'
+            pos_hint: {'center_x':0.9 , 'center_y':0.05 }
+            on_release:
+                app.root.current ="server_list"
+                root.manager.transition.direction = "left"
+
+
+<ServerList>:
+    name:"server_list"
+    on_enter:
+        root.load_servers()
+
+    MDScrollView:
+
+        MDFloatLayout:
+            MDIconButton:
+                icon: 'arrow-left'
+                pos_hint: {'center_x':0.05 , 'center_y':0.95 }
+                padding: 20
+                on_release:
+                    app.root.current ="profile"
+                    root.manager.transition.direction = "right"
+            MDIconButton:
+                icon: 'refresh'
+                padding: 30
+                pos_hint: {'center_x':0.91 , 'center_y':0.95 }

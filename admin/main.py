@@ -8,16 +8,19 @@ from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.core.window import Window
 from kivy.clock import Clock
+import sys
 
 
 class WindowManager(MDScreenManager):
     pass
 
-class MainScreen():
+class MainScreen(MDScreen):
     pass
 
-class SecondScreen():
+class SecondScreen(MDScreen):
     pass
+
+
 class ServerScreen(MDScreen):
     threads = []
     stop_event = threading.Event()
@@ -52,6 +55,9 @@ class ServerScreen(MDScreen):
             network.nuke_server()  # Stop the server in the background
         except Exception as e:
             print(f"Error while stopping server: {e}")
+
+def exit():
+    sys.exit()
 
 
 

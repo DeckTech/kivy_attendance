@@ -7,6 +7,9 @@ from kivy.lang import Builder
 from kivy.core.window import Window
 from data import Person
 from data import File_Handler
+import network
+import time
+
 
 Window.size=(360,640)
 
@@ -83,6 +86,18 @@ class SecondScreen(MDScreen):
 class ProfileScreen(MDScreen):
     pass
 
+class ServerList(MDScreen):
+    def load_servers(self):
+        network.listen_to_all_servers(network.PORT)
+        print(network.servers_found)
+
+        print(network.servers_found)
+        time.sleep(2)
+        print(network.servers_found)
+        time.sleep(2)
+        print(network.servers_found)
+        time.sleep(2)
+        print(network.servers_found)
 
 
 

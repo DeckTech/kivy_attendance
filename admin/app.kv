@@ -1,16 +1,39 @@
-WindowManager
+WindowManager:
     MainScreen:
     SecondScreen:
     ServerScreen:
 
+<MainScreen>:
+    name:"main"
+    MDScreen:
+        MDFloatLayout:
+
+            MDRaisedButton:
+                text:'CONTINUE'
+                padding: '30dp'
+                pos_hint: {'center_x': 0.5 , 'center_y': 0.5}
+
+                on_press:
+                    app.root.current = "server"
+                    root.manager.transition.direction = 'up'
+
+<SecondScreen>:
+
+
 <ServerScreen>:
-    name: "main"
+    name: "server"
     MDScreen:
         MDLabel:
             halign: 'center'
             text: 'DeckTech'
         MDFloatLayout:
 
+            MDIconButton:
+                icon: 'close'
+                padding: "10dp"
+                pos_hint: {'x':0.85 , 'y':0.9 }
+                on_release:
+                    exit()
 
             MDRaisedButton:
                 text: 'Start Server'
@@ -26,6 +49,15 @@ WindowManager
                 height: "100dp"
                 on_release:
                     root.close()
+
+            MDIconButton:
+                icon: 'arrow-left'
+                pos_hint: {'x':0 , 'y':0 }
+                on_release:
+                    app.root.current = "main"
+                    root.manager.transition.direction = 'down'
+
+
 
 
 <SecondScreen>:
