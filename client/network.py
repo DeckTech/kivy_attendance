@@ -27,15 +27,19 @@ def listen_to_all_servers(port):
                 try:
                     message, addr = s.recvfrom(HEADER)
                     server_info = json.loads(message.decode(FORMAT))
-                    if "SERVER" in server_info and "PORT" in server_info:
-                        server_address = (server_info["SERVER"], server_info["PORT"])
-                        if server_address not in servers_found:
-                            servers_found.append(server_address)
-                            print(f"Discovered server: {server_address}")
+                    server_address = (server_info["SERVER"], server_info["PORT"])
+                    if server_address in servers_found:
+                        continue
+                    else:
+                        servers_found.append(server_info)
+                        print(f"Discovered server: {server_address}")
+
                 except Exception as e:
                     if listen_stop_event.is_set():
                         break
                     print(f"Error receiving broadcast: {e}")
+                finally:
+                    break
         print("Stopped listening for broadcasts.")
 
     # Start the listener in a separate thread

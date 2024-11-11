@@ -89,14 +89,7 @@ class ProfileScreen(MDScreen):
 class ServerList(MDScreen):
     def load_servers(self):
         network.listen_to_all_servers(network.PORT)
-        print(network.servers_found)
-
-        print(network.servers_found)
-        time.sleep(2)
-        print(network.servers_found)
-        time.sleep(2)
-        print(network.servers_found)
-        time.sleep(2)
+        time.sleep(10)
         print(network.servers_found)
 
 
